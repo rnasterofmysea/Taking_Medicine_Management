@@ -29,6 +29,10 @@
 
 ## Reference
 
+### Yolov3 + OpenCV4 + Tesseract OCR
+
+- https://github.com/rnasterofmysea/RaspberryPi4_Yolov3
+
 ### Posenet + Pose estimation
 
 -  https://ivdevlog.tistory.com/2
