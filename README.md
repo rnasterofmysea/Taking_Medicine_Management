@@ -26,3 +26,9 @@
 2. 라즈베리파이 스트리밍 API
 3. 동작인식 AI
 4. 포드포워딩 및 웹 서비스 구축
+
+## Reference
+
+### Posenet + Pose estimation
+
+-  https://ivdevlog.tistory.com/2
