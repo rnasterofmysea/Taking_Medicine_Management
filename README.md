@@ -75,3 +75,9 @@ element14 camera module
 ### Posenet + Dataset << * Chanwon
 - https://hongchan.tistory.com/3
  
+## Trouble Issues
+
+### (Raspberry Pi 4) SSH connection timeout - fixed
+
+https://sote.tistory.com/249
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=duehd88&logNo=20201603052
