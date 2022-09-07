@@ -1,8 +1,18 @@
 # Taking_Medicine_Management
 
+## Hardware Configuration
+
+Raspbeery Pi 4
+SD card 32G
+element14 camera module
+
+## Server Configuration
+
+Ubuntu 21.0.4 desktop verion
 
 ## Concept
 
+### Step 2 ( pose estimation
 ⓐ 환경구축
 1. 임베디드 환경 구축
 2. 우분투 서버 구축
