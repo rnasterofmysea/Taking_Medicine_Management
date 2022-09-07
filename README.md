@@ -103,7 +103,7 @@ Interfacing Option > VNC > enable
 
 https://www.realvnc.com/en/connect/download/viewer/
 
-![image](https://user-images.githubusercontent.com/81907470/188837420-7eebef41-7ab7-4800-be17-ab460edddeac.png)
+![image](https://user-images.githubusercontent.com/90185805/188858355-becbecc5-684b-472d-a6b5-0b1ff9804f57.png)
 
 - Input IP Info & Login
 
