@@ -2,9 +2,9 @@
 
 ## Hardware Configuration
 
-Raspbeery Pi 4
-SD card 32G
-element14 camera module
+- Raspbeery Pi 4
+- SD card 32G
+- element14 camera module
 
 ## Server Configuration
 
