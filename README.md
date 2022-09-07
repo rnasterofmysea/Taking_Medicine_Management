@@ -101,7 +101,7 @@ Interfacing Option > VNC > enable
 ```
 - Install Ultra VNC
 
-https://uvnc.com/downloads/ultravnc.html
+https://www.realvnc.com/en/connect/download/viewer/
 
 ![image](https://user-images.githubusercontent.com/81907470/188837420-7eebef41-7ab7-4800-be17-ab460edddeac.png)
 
