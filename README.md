@@ -8,11 +8,20 @@ element14 camera module
 
 ## Server Configuration
 
-Ubuntu 21.0.4 desktop verion
+- Ubuntu 21.0.4 desktop verion
 
 ## Concept
 
-### Step 2 ( pose estimation
+### Step 1 (item estimation)
+
+- 약통 인식 (실시간 스트리밍)
+    - 약통 물체 인식
+        - Yolov3 모델 > tenserflow 변환 후 구현
+    - 약통에 적힌 숫자 인식
+        - Tensorflow 사용
+- 흐름 Dialog
+    - 
+### Step 2 (pose estimation)
 ⓐ 환경구축
 1. 임베디드 환경 구축
 2. 우분투 서버 구축
