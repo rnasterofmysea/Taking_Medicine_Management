@@ -62,6 +62,36 @@
 3. 동작인식 AI
 4. 포드포워딩 및 웹 서비스 구축
 
+## Proceed
+
+### Hardware & Software Setting
+
+#### Raspberrypi4 SSH && Camera enable
+
+```
+sudo raspi-config
+Interfacing Option > camera & ssh > enable  
+```
+![image](https://user-images.githubusercontent.com/81907470/188829857-b089da73-ea49-443a-a0c6-5129a0acf7a3.png)
+
+
+#### Static IP Assignment
+
+- check IP
+
+```
+ifconfig
+```
+![image](https://user-images.githubusercontent.com/81907470/188831351-7ddf5a7a-768d-4c64-8276-bd7dfaaa01f5.png)
+
+- IP assignment
+
+```
+ sudo vim /etc/dhcpcd.conf
+```
+![image](https://user-images.githubusercontent.com/81907470/188831018-95b3e7d5-e11e-4108-8566-18d65189de87.png)
+
+
 ## Reference
 
 ### Yolov3 + OpenCV4 + Tesseract OCR
