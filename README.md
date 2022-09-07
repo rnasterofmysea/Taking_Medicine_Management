@@ -91,6 +91,27 @@ ifconfig
 ```
 ![image](https://user-images.githubusercontent.com/81907470/188831018-95b3e7d5-e11e-4108-8566-18d65189de87.png)
 
+### VNC Connection
+
+- Raspberry PI setting 
+
+```
+sudo raspi-config
+Interfacing Option > VNC > enable
+```
+- Install Ultra VNC
+
+https://uvnc.com/downloads/ultravnc.html
+
+![image](https://user-images.githubusercontent.com/81907470/188837420-7eebef41-7ab7-4800-be17-ab460edddeac.png)
+
+- Input IP Info & Login
+
+![image](https://user-images.githubusercontent.com/81907470/188837620-54cadc02-8911-4ab3-9fc2-ad14e35bca88.png)
+
+![image](https://user-images.githubusercontent.com/81907470/188837633-a673a286-7e61-43e9-92ba-5ad743539189.png)
+
+![image](https://user-images.githubusercontent.com/81907470/188837746-ec4f635a-08cc-421f-8c50-1d2cc9c2a3ac.png)
 
 ## Reference
 
