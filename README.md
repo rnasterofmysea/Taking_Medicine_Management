@@ -9,7 +9,7 @@
 ## Server Configuration
 
 - Ubuntu 21.0.4 desktop verion
-
+- debian
 ## Concept
 
 ### Step 1 (item estimation)
