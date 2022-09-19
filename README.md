@@ -534,6 +534,142 @@ http://localhost/
 
 ![image](https://user-images.githubusercontent.com/90185805/190654278-7219624b-e447-4ac3-b4d9-4027ba5296db.png)
 
+## 이미지 라벨링
+- ./windows_v1.8.1/data
+    - 클래스를 추가할 수 있는 txt파일
+- ./windows_v1.8.1/labelImg.exe
+    - 실행파일
+
+![image](https://user-images.githubusercontent.com/90185805/190962315-d90d06ba-4748-4a6c-b248-502726bc5849.png)
+
+### predefined_classes.txt
+- medicine box를 추가
+
+![image](https://user-images.githubusercontent.com/90185805/190963399-0b932544-bcc6-404e-9860-b52f5202a0eb.png)
+
+### 실행화면
+- 1번 클릭하여 `YOLO`로 변경
+- 2번 클릭 후 라벨링할 이미지 파일을 선택
+
+![image](https://user-images.githubusercontent.com/90185805/190963181-0d67e7a3-fe3c-403e-a47e-839146e30688.png)
+
+### 이미지가 추가 된 화면
+
+![image](https://user-images.githubusercontent.com/90185805/190963967-690cc443-0d04-47ac-aab0-80bae0f8850f.png)
+
+### 이미지 라벨링 시작
+1. 키보드 `w`클릭하여 이미지 라벨링
+2. txt파일에서 추가시킨 class명을 선택
+3. 저장하여 txt파일 추가
+4. 키보드 `d`를 눌러 다음 이미지로 전환
+5. 학습시킬 이미지 파일에 이동하여 `classes.txt` 파일 삭제
+
+![image](https://user-images.githubusercontent.com/90185805/190964073-3803cfeb-ff8d-4b58-b05a-77cf080fffb9.png)
+
+![image](https://user-images.githubusercontent.com/90185805/190964226-b7c819ca-4014-4f0f-aafe-321de15ea4be.png)
+
+- txt파일에는 이미지의 라벨링 좌표값이 저장되어있다.
+
+![image](https://user-images.githubusercontent.com/90185805/190965061-5c3b86f1-3d61-4804-a621-e415d4c2d913.png)
+
+
+### 이미지 라벨링 참고
+- https://velog.io/@kimsoohyun/YOLO-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%9D%BC%EB%B2%A8%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-labelImg-%EC%82%AC%EC%9A%A9%EB%B2%95
+
+---
+
+## Colab에서 라벨링한 이미지로 YOLO3 학습
+
+### 1번
+![image](https://user-images.githubusercontent.com/90185805/190965554-afe0d0cd-e9d4-42be-8476-d6f8fba1363e.png)
+
+### 2번
+![image](https://user-images.githubusercontent.com/90185805/190965700-4a9d72be-a8e6-4b3a-b494-af685e390e4c.png)
+
+### 3번
+![image](https://user-images.githubusercontent.com/90185805/190965841-3c700a0e-c595-4736-a0b5-f37ce3115b85.png)
+
+### 4번
+![image](https://user-images.githubusercontent.com/90185805/
+190965864-80098274-d722-4255-9bc1-5951d77b3db3.png)
+
+### 5번
+![image](https://user-images.githubusercontent.com/90185805/190965893-020c24bf-12b4-49a9-9834-444a691650e2.png)
+
+### 6번
+![image](https://user-images.githubusercontent.com/90185805/190965912-5be46da4-2812-4433-8f18-423b05220956.png)
+
+
+### 학습된 YOLO3 나온 결과_1
+![image](https://user-images.githubusercontent.com/90185805/190965948-2f461c83-c4e0-4aad-b0e2-418512f09f29.png)
+
+### 학습된 YOLO3 나온 결과_2
+![image](https://user-images.githubusercontent.com/90185805/190966007-2dc0341d-6a2a-4895-b028-ad6d197f770f.png)
+
+### YOLO3 파일 정보
+ - `yolov3_testing.cfg` : YOLO3 config 파일
+ - `yolov3_training_last.weights` : 학습된 YOLO3 가중치 데이터
+![image](https://user-images.githubusercontent.com/90185805/190967489-fd98b940-b0f2-4908-979e-91fd9361020c.png)
+
+```python
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+net = cv2.dnn.readNet("../gdrive/MyDrive/yolov3/yolov3_training_last.weights", "cfg/yolov3_training.cfg")
+classes = []
+with open("./data/coco.names", "r") as f:
+    classes = [line.strip() for line in f.readlines()]
+layer_names = net.getLayerNames()
+output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()] 
+colors = np.random.uniform(0, 255, size=(len(classes), 3))
+img = cv2.imread("test_medicine2.jpg")
+img = cv2.resize(img, None, fx=0.4, fy=0.4)
+height, width, channels = img.shape
+blob = cv2.dnn.blobFromImage(img, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+net.setInput(blob)
+outs = net.forward(output_layers)
+class_ids = []
+confidences = []
+boxes = []
+flag = "flag"
+for out in outs:
+    for detection in out:
+        scores = detection[5:]
+        class_id = np.argmax(scores)
+        confidence = scores[class_id]
+        if confidence > 0.5:
+            flag = str(confidence)
+            center_x = int(detection[0] * width)
+            center_y = int(detection[1] * height)
+            w = int(detection[2] * width)
+            h = int(detection[3] * height)            
+            x = int(center_x - w / 2)
+            y = int(center_y - h / 2)
+            boxes.append([x, y, w, h])
+            confidences.append(float(confidence))
+            class_ids.append(class_id)
+            indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+            from google.colab.patches import cv2_imshow
+font = cv2.FONT_HERSHEY_PLAIN
+for i in range(len(boxes)):
+    if i in indexes:
+        x, y, w, h = boxes[i]
+        label = str(classes[class_ids[i]])
+        color = colors[i]
+        cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
+        cv2.putText(img, label+flag, (x, y + 30), font, 3, color, 3)
+cv2_imshow(img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+### Colab에서 YOLO3 학습 참고 자료
+
+- https://periar.tistory.com/236
+
+--- 
+
 ## Reference
 
 ### Yolov3 + OpenCV4 + Tesseract OCR
