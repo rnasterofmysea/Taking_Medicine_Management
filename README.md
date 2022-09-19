@@ -590,8 +590,7 @@ http://localhost/
 ![image](https://user-images.githubusercontent.com/90185805/190965841-3c700a0e-c595-4736-a0b5-f37ce3115b85.png)
 
 ### 4번
-![image](https://user-images.githubusercontent.com/90185805/
-190965864-80098274-d722-4255-9bc1-5951d77b3db3.png)
+![image](https://user-images.githubusercontent.com/90185805/190968055-9bc0d567-9845-4453-a6b6-50f41b6f935c.png)
 
 ### 5번
 ![image](https://user-images.githubusercontent.com/90185805/190965893-020c24bf-12b4-49a9-9834-444a691650e2.png)
