@@ -829,6 +829,21 @@ for idol in idols:
 
 ## Reference
 
+### Python Scrapter
+
+#### Selenum
+
+- https://dejavuqa.tistory.com/109
+
+#### Ubuntu
+
+- https://oslinux.tistory.com/33
+
+#### Jupyter
+
+- https://velog.io/@jungeun-dev/Python-%EC%9B%B9-%ED%81%AC%EB%A1%A4%EB%A7%81Selenium-%EA%B5%AC%EA%B8%80-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%88%98%EC%A7%91
+- https://durian9s-coding-tree.tistory.com/56
+
 ### Yolov3 + OpenCV4 + Tesseract OCR
 
 - https://github.com/rnasterofmysea/RaspberryPi4_Yolov3
