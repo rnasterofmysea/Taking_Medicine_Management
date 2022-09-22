@@ -848,6 +848,11 @@ for idol in idols:
 
 - https://github.com/rnasterofmysea/RaspberryPi4_Yolov3
 
+### Yolov3 + Flask + Background running
+
+- https://kumoh-irl.tistory.com/19
+- https://ultrakid.tistory.com/11
+
 ### Posenet + Pose estimation
 
 -  https://ivdevlog.tistory.com/2
