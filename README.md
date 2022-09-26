@@ -904,6 +904,7 @@ while True:
 - 보안 사항
     - 인식률, rectablge box 좌표 반환
 
+![image](https://user-images.githubusercontent.com/81907470/192218962-0eaa7221-28d8-4c20-a7fe-9118c33514e6.png)
 
 
 ### Colab에서 YOLO3 학습 참고 자료
