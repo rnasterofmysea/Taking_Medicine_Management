@@ -938,7 +938,7 @@ while True:
 
 - https://kumoh-irl.tistory.com/19
 - https://ultrakid.tistory.com/11
-
+- https://deep-eye.tistory.com/6
 ### Posenet + Pose estimation
 
 -  https://ivdevlog.tistory.com/2
