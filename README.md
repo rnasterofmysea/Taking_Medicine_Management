@@ -904,7 +904,11 @@ while True:
 - 보안 사항
     - 인식률, rectablge box 좌표 반환
 
+<<<<<<< HEAD
 ## [Python] Image Data Arguement + Copy text file 
+=======
+![image](https://user-images.githubusercontent.com/81907470/192218962-0eaa7221-28d8-4c20-a7fe-9118c33514e6.png)
+>>>>>>> d9c1456dd340004d668d86f368162b7232ee19a0
 
 ```
 import random
@@ -1087,7 +1091,7 @@ for i in range(0, total_origin_image_num):
 
 - https://kumoh-irl.tistory.com/19
 - https://ultrakid.tistory.com/11
-
+- https://deep-eye.tistory.com/6
 ### Posenet + Pose estimation
 
 -  https://ivdevlog.tistory.com/2
