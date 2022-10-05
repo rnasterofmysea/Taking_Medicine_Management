@@ -904,7 +904,157 @@ while True:
 - 보안 사항
     - 인식률, rectablge box 좌표 반환
 
+## [Python] Image Data Arguement + Copy text file 
 
+```
+import random
+import numpy as np
+import os
+import cv2
+import glob
+from PIL import Image
+import PIL.ImageOps
+import copy
+from random import randint
+import shutil
+```
+```
+#다음 변수를 수정하여 새로 만들 이미지 갯수를 정합니다.
+num_augmented_images = 2
+file_path = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\'
+#file_names = os.listdir(file_path)
+#total_origin_image_num = len(file_names)
+file_list = os.listdir(file_path)
+file_names = [file for file in file_list if file.endswith(".jpg")]
+total_origin_image_num = len(file_names)
+augment_cnt = 3
+
+
+def SaltPepper(img):
+    # Getting the dimensions of the image
+    if img.ndim > 2:  # color
+        height, width, _ = img.shape
+    else:  # gray scaleㅋ
+        height, width = img.shape
+ 
+    result = copy.deepcopy(img)
+ 
+    # Randomly pick some pixels in the image
+    # Pick a random number between height*width/80 and height*width/10
+    number_of_pixels = randint(int(height * width / 100), int(height * width / 10))
+ 
+    for i in range(number_of_pixels):
+        # Pick a random y coordinate
+        y_coord = randint(0, height - 1)
+ 
+        # Pick a random x coordinate
+        x_coord = randint(0, width - 1)
+ 
+        if result.ndim > 2:
+            result[y_coord][x_coord] = [randint(0, 255), randint(0, 255), randint(0, 255)]
+        else:
+            # Color that pixel to white
+            result[y_coord][x_coord] = 255
+ 
+    # Randomly pick some pixels in image
+    # Pick a random number between height*width/80 and height*width/10
+    for i in range(number_of_pixels):
+        # Pick a random y coordinate
+        y_coord = randint(0, height - 1)
+ 
+        # Pick a random x coordinate
+        x_coord = randint(0, width - 1)
+ 
+        if result.ndim > 2:
+            result[y_coord][x_coord] = [randint(0, 255), randint(0, 255), randint(0, 255)]
+        else:
+            # Color that pixel to white
+            result[y_coord][x_coord] = 0
+ 
+    return result
+
+
+for i in range(0, total_origin_image_num):
+    change_picture_index = i
+    print(file_names[i])
+    file_name = file_names[change_picture_index]
+    
+    origin_image_path = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + file_name
+    print(origin_image_path)
+    image = cv2.imread(origin_image_path)
+    
+    #1. 이미지 노이즈 추가 전환
+    print("blur")
+    converted_image = cv2.medianBlur(image, 3) 
+    cv2.imwrite(file_path + str(augment_cnt) + '.jpg',converted_image)
+    # txt파일 증폭
+    src = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(i) + ".txt"
+    dst = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(augment_cnt) + ".txt"
+    shutil.copy(src, dst)
+    augment_cnt += 1
+    
+    print("gray")
+    converted_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    cv2.imwrite(file_path + str(augment_cnt) + '.jpg',converted_image)
+    # txt파일 증폭
+    src = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(i) + ".txt"
+    dst = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(augment_cnt) + ".txt"
+    shutil.copy(src, dst)
+    augment_cnt += 1
+    
+    #2. 이미지 RGB 전환
+    print("cv2.COLOR_BGR2RGB")
+    converted_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    cv2.imwrite(file_path + str(augment_cnt) + '.jpg',converted_image)
+    # txt파일 증폭
+    src = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(i) + ".txt"
+    dst = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(augment_cnt) + ".txt"
+    shutil.copy(src, dst)
+    augment_cnt += 1
+    
+    #3. 이미지 LUV 전환
+    print("cv2.COLOR_BGR2Luv")
+    converted_image = cv2.cvtColor(image, cv2.COLOR_BGR2Luv)
+    cv2.imwrite(file_path + str(augment_cnt) + '.jpg',converted_image)
+    # txt파일 증폭
+    src = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(i) + ".txt"
+    dst = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(augment_cnt) + ".txt"
+    shutil.copy(src, dst)
+    augment_cnt += 1
+    
+    #4. 이미지 noise 추가
+    print("noise")
+    converted_image = SaltPepper(image)
+    cv2.imwrite(file_path + str(augment_cnt) + '.jpg',converted_image)
+    # txt파일 증폭
+    src = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(i) + ".txt"
+    dst = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(augment_cnt) + ".txt"
+    shutil.copy(src, dst)
+    augment_cnt += 1
+    
+    #5. 이미지 선명하게 표현
+    kernel = np.array([[0, -1, 0],
+                   [-1, 5, -1],
+                   [0, -1, 0]])
+    # 커널 적용 
+    converted_image = cv2.filter2D(image, -1, kernel)
+    cv2.imwrite(file_path + str(augment_cnt) + '.jpg',converted_image)
+    # txt파일 증폭
+    src = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(i) + ".txt"
+    dst = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(augment_cnt) + ".txt"
+    shutil.copy(src, dst)
+    augment_cnt += 1
+    
+    #6. 이미지 HLS 전환
+    print("HLS")
+    converted_image = cv2.cvtColor(image,cv2.COLOR_BGR2HLS)
+    cv2.imwrite(file_path + str(augment_cnt) + '.jpg',converted_image)
+    # txt파일 증폭
+    src = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(i) + ".txt"
+    dst = 'C:\\Users\\scwon\\Desktop\\StudyDir\\jupyter_study\\img\\' + str(augment_cnt) + ".txt"
+    shutil.copy(src, dst)
+    augment_cnt += 1
+```
 
 ### Colab에서 YOLO3 학습 참고 자료
 
